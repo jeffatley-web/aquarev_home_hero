@@ -25,9 +25,9 @@
       if (!en.isIntersecting) return;
       en.target.classList.add('is-in');
       var n = en.target.querySelector('[data-count]');
-      if (n) setTimeout(function(){ countUp(n); }, (parseInt(getComputedStyle(en.target).getPropertyValue('--i'), 10) || 0) * 80);
+      if (n) setTimeout(function(){ countUp(n); }, (parseInt(getComputedStyle(en.target).getPropertyValue('--i'), 10) || 0) * 70);
       io.unobserve(en.target);
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
   [].forEach.call(root.querySelectorAll('.arfx-rv'), function(el){ io.observe(el); });
 })();
