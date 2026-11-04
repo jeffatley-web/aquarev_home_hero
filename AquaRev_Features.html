@@ -30,14 +30,14 @@
 #arfx .arfx-wrap{max-width:1240px; margin:0 auto; padding:0 var(--gut)}
 
 /* ---------- headline + product introduction ---------- */
-#arfx .arfx-head{max-width:860px; margin:0 auto; text-align:center}
+#arfx .arfx-head{max-width:1112px; margin:0 auto; text-align:center}
 #arfx .arfx-eyebrow{display:inline-flex; align-items:center; gap:10px; font:700 .8125rem/1 var(--text); letter-spacing:.16em; text-transform:uppercase; color:var(--cyan)}
 #arfx .arfx-eyebrow::before, #arfx .arfx-eyebrow::after{content:""; width:28px; height:1px; background:linear-gradient(90deg,transparent,var(--cyan))}
 #arfx .arfx-eyebrow::after{transform:scaleX(-1)}
 #arfx .arfx-title{margin-top:18px; font:800 clamp(2.1rem,1.2rem + 3vw,3.75rem)/1.05 var(--display); letter-spacing:-.025em; text-wrap:balance}
 #arfx .arfx-title span{color:var(--cyan)}
-#arfx .arfx-intro{margin:22px auto 0; max-width:760px; display:flex; flex-direction:column; gap:12px;
-  font:400 clamp(1.02rem,.92rem + .35vw,1.175rem)/1.6 var(--text); color:var(--muted); text-wrap:pretty}
+#arfx .arfx-intro{margin:22px auto 0; max-width:1112px; display:flex; flex-direction:column; gap:12px;
+  font:400 clamp(1.02rem,.92rem + .35vw,1.175rem)/1.6 var(--text); color:var(--muted); text-wrap:balance}
 #arfx .arfx-intro strong{font-weight:600; color:var(--cyan-hi)}
 
 /* ---------- performance figures: 3 x 3, number beside label ---------- */
@@ -118,7 +118,7 @@
 }
 /* ---------- phones ---------- */
 @media (max-width:600px){
-  #arfx .arfx-intro{text-align:left}
+  #arfx .arfx-intro{text-align:left; text-wrap:pretty}
   #arfx .arfx-stat{grid-template-columns:1fr; grid-template-rows:auto; padding:16px 14px; row-gap:6px}
   #arfx .arfx-num{grid-row:auto; font-size:2.6rem}
   #arfx .arfx-stat-label{align-self:start; font-size:.9375rem}
@@ -142,7 +142,7 @@ body{margin:0; background:#040f1e}
   <div class="arfx-wrap">
     <header class="arfx-head arfx-rv" style="--i:0">
       <p class="arfx-eyebrow">The AquaRev Advantage</p>
-      <h2 class="arfx-title" id="arfx-title">Hotels / Resorts &amp; Commercial Operators <span>Advantage</span></h2>
+      <h2 class="arfx-title" id="arfx-title">Hotel / Resort &amp; Commercial Pool Operators <span>Advantage</span></h2>
       <div class="arfx-intro">
         <p>AquaRev’s patented technology <strong>improves water quality</strong> while <strong>reducing water use and operating costs</strong>. Component certified to NSF/ANSI/CAN 50 via IAPMO, it is built for commercial swimming pools, spas and water features.</p>
         <p>AquaRev installs in-line with your existing water treatment system and comes with a lifetime warranty. There are no moving parts, no maintenance and no consumables. Just better water, lower operating costs and a better guest experience.</p>

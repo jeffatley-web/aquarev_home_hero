@@ -89,7 +89,7 @@ The old **Section 3** is hidden, not deleted.
 
 ## Features section (#arfx)
 
-"Hotels / Resorts & Commercial Operators Advantage", the section under the logo banner, replacing
+"Hotel / Resort & Commercial Pool Operators Advantage", the section under the logo banner, replacing
 Webflow Section 7 (2026-11-04). Master `AquaRev_Features.html`, build `build-features.sh` →
 `features.css/js`, `webflow-embed-features.html`, `preview-features.html` (hero + banner + section).
 
