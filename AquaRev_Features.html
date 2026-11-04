@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AquaRev Features (master)</title>
+<!-- Master for the home page "AquaRev Advantage" section (replaces Webflow Section 7). The only file you
+     edit; build-features.sh generates the CSS, JS, Webflow embed and preview. Scoped under #arfx.
+     Every figure here is sourced: IAPMO R&T test reports (lab) or Turtle Bay Resort 2022 ESG Report and
+     pilot-pool invoice records (field). Do not add a number without a source line in .arfx-sources. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<style>
+#arfx{
+  --bg:#040f1e; --panel:#071a33; --panel-hi:#0a2342; --line:rgba(110,243,255,.14); --line-hi:rgba(110,243,255,.34);
+  --ink:#ffffff; --muted:#c3d6e8; --soft:rgba(195,214,232,.72); --cyan:#1fdcf0; --cyan-hi:#6ef3ff; --cyan-ink:#03203a;
+  --gut:clamp(20px,5vw,96px);
+  --display:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; --text:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  position:relative; isolation:isolate; width:100%; overflow:hidden;
+  padding:clamp(56px,6.4vw,96px) 0 clamp(52px,6vw,88px);
+  background:radial-gradient(70% 60% at 50% 0%,rgba(31,220,240,.07),transparent 70%),var(--bg);
+  color:var(--ink); font-family:var(--text); -webkit-font-smoothing:antialiased;
+}
+#arfx, #arfx *, #arfx *::before, #arfx *::after{box-sizing:border-box}
+#arfx :where(h2,h3,p,ul,li,a,svg,span,strong,small){margin:0;padding:0;border:0;font:inherit;color:inherit;background:none;letter-spacing:normal;text-transform:none}
+#arfx :where(ul){list-style:none}
+#arfx :where(a){text-decoration:none}
+#arfx .arfx-wrap{max-width:1240px; margin:0 auto; padding:0 var(--gut)}
+
+/* ---------- headline ---------- */
+#arfx .arfx-head{max-width:820px; margin:0 auto; text-align:center}
+#arfx .arfx-eyebrow{display:inline-flex; align-items:center; gap:10px; font:700 .8125rem/1 var(--text); letter-spacing:.16em; text-transform:uppercase; color:var(--cyan)}
+#arfx .arfx-eyebrow::before, #arfx .arfx-eyebrow::after{content:""; width:28px; height:1px; background:linear-gradient(90deg,transparent,var(--cyan))}
+#arfx .arfx-eyebrow::after{transform:scaleX(-1)}
+#arfx .arfx-title{margin-top:18px; font:800 clamp(2.1rem,1.2rem + 3vw,3.75rem)/1.05 var(--display); letter-spacing:-.025em; text-wrap:balance}
+#arfx .arfx-title span{color:var(--cyan)}
+#arfx .arfx-sub{margin:18px auto 0; max-width:640px; font:400 clamp(1.02rem,.92rem + .35vw,1.2rem)/1.55 var(--text); color:var(--muted); text-wrap:pretty}
+
+/* ---------- headline stats ---------- */
+#arfx .arfx-stats{margin-top:clamp(32px,3.6vw,52px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(12px,1.6vw,20px)}
+#arfx .arfx-stat{
+  position:relative; padding:clamp(22px,2.4vw,32px) clamp(18px,2vw,28px) clamp(20px,2.2vw,28px); border-radius:18px;
+  background:linear-gradient(180deg,var(--panel-hi),var(--panel)); border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:10px; overflow:hidden;
+}
+#arfx .arfx-stat::before{content:""; position:absolute; inset:0 0 auto 0; height:2px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:.55}
+#arfx .arfx-num{font:800 clamp(2.9rem,1.6rem + 3.6vw,5rem)/.95 var(--display); letter-spacing:-.04em;
+  background:linear-gradient(180deg,#ffffff 0%,var(--cyan-hi) 55%,var(--cyan) 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-variant-numeric:tabular-nums}
+#arfx .arfx-num small{font-size:.5em; letter-spacing:-.02em; margin-left:2px; vertical-align:.62em}
+#arfx .arfx-stat-label{font:600 clamp(1rem,.94rem + .2vw,1.125rem)/1.3 var(--text); color:var(--ink)}
+#arfx .arfx-src{margin-top:auto; padding-top:8px; display:inline-flex; align-items:center; gap:6px; font:600 .6875rem/1 var(--text); letter-spacing:.1em; text-transform:uppercase; color:var(--soft)}
+#arfx .arfx-src::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
+#arfx .arfx-src.is-field::before{background:#8fe3a8; box-shadow:0 0 8px #8fe3a8}
+
+/* ---------- field results strip ---------- */
+#arfx .arfx-field{
+  margin-top:clamp(12px,1.6vw,20px); padding:clamp(18px,2vw,24px) clamp(20px,2.4vw,32px); border-radius:18px;
+  border:1px solid var(--line); background:rgba(7,26,51,.55);
+  display:grid; grid-template-columns:1fr auto; grid-template-areas:"title link" "list list"; align-items:center; gap:clamp(14px,1.6vw,20px) 24px;
+}
+#arfx .arfx-field-title{grid-area:title}
+#arfx .arfx-field > .arfx-more{grid-area:link}
+#arfx .arfx-field-list{grid-area:list}
+#arfx .arfx-field-title{font:700 .75rem/1.35 var(--text); letter-spacing:.12em; text-transform:uppercase; color:#8fe3a8}
+#arfx .arfx-field-title strong{margin-left:10px; font:700 1rem/1.3 var(--display); letter-spacing:0; text-transform:none; color:var(--ink)}
+#arfx .arfx-field-list{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px 20px}
+#arfx .arfx-field-list li{display:flex; flex-direction:column; gap:4px; padding-left:16px; border-left:1px solid var(--line)}
+#arfx .arfx-field-list b{font:800 clamp(1.5rem,1.2rem + .9vw,2rem)/1 var(--display); letter-spacing:-.02em; color:#bff6d0}
+#arfx .arfx-field-list span{font:500 .875rem/1.3 var(--text); color:var(--muted)}
+#arfx .arfx-more{display:inline-flex; align-items:center; gap:6px; min-height:44px; font:600 .9375rem/1.2 var(--text); color:#bdeefe; white-space:nowrap;
+  text-decoration:underline; text-decoration-color:rgba(189,238,254,.4); text-underline-offset:5px}
+#arfx .arfx-more:hover{color:#fff; text-decoration-color:#fff}
+#arfx .arfx-more svg{width:14px; height:14px; flex:none; transition:transform .18s ease}
+#arfx .arfx-more:hover svg{transform:translateX(3px)}
+
+/* ---------- value cards ---------- */
+#arfx .arfx-cards{margin-top:clamp(12px,1.6vw,20px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.6vw,20px)}
+#arfx .arfx-card{padding:clamp(20px,2vw,28px); border-radius:18px; border:1px solid var(--line); background:var(--panel);
+  display:flex; flex-direction:column; gap:14px; transition:border-color .25s ease,transform .25s ease}
+#arfx .arfx-card-head{display:flex; align-items:center; gap:14px}
+#arfx .arfx-card:hover{border-color:var(--line-hi); transform:translateY(-2px)}
+#arfx .arfx-icon{flex:none; width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:rgba(31,220,240,.1); border:1px solid var(--line); color:var(--cyan)}
+#arfx .arfx-icon svg{width:22px; height:22px}
+#arfx .arfx-card h3{font:800 clamp(1.25rem,1.1rem + .4vw,1.5rem)/1.2 var(--display); letter-spacing:-.01em}
+#arfx .arfx-card ul{display:flex; flex-direction:column; gap:10px}
+#arfx .arfx-card li{position:relative; padding-left:24px; font:400 .975rem/1.5 var(--text); color:var(--muted)}
+#arfx .arfx-card li::before{content:""; position:absolute; left:2px; top:.5em; width:12px; height:7px; border-left:2px solid var(--cyan); border-bottom:2px solid var(--cyan); transform:rotate(-45deg)}
+#arfx .arfx-card li strong{color:var(--ink); font-weight:600}
+#arfx .arfx-card .arfx-more{margin-top:auto}
+
+/* ---------- closing actions ---------- */
+#arfx .arfx-actions{margin-top:clamp(32px,3.6vw,48px); display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px 28px}
+#arfx .arfx-cta{position:relative; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; gap:.6em; min-height:56px; padding:16px 30px; border-radius:12px;
+  font:800 clamp(1.05rem,.95rem + .3vw,1.2rem)/1.15 var(--display); color:var(--cyan-ink);
+  background:linear-gradient(180deg,var(--cyan-hi),var(--cyan));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),0 0 0 1px rgba(31,220,240,.5),0 10px 34px rgba(31,220,240,.3);
+  transition:transform .18s ease,box-shadow .18s ease}
+#arfx .arfx-cta svg{width:1.05em; height:1.05em; transition:transform .18s ease}
+#arfx .arfx-cta:hover{transform:translateY(-2px); box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 0 0 1px rgba(31,220,240,.7),0 14px 40px rgba(31,220,240,.45)}
+#arfx .arfx-cta:hover svg{transform:translateX(3px)}
+#arfx .arfx-cta:focus-visible, #arfx .arfx-more:focus-visible{outline:3px solid #fff; outline-offset:3px; border-radius:6px}
+
+#arfx .arfx-sources{margin:clamp(22px,2.4vw,32px) auto 0; max-width:880px; text-align:center; font:400 .75rem/1.6 var(--text); color:var(--soft)}
+
+/* ---------- reveal + count-up (motion only when welcome; final values are always in the HTML) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #arfx.is-armed .arfx-rv{opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--i,0) * 80ms)}
+  #arfx.is-armed .arfx-rv.is-in{opacity:1; transform:none}
+}
+
+/* ---------- tablet ---------- */
+@media (max-width:1023px){
+  #arfx .arfx-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #arfx .arfx-cards{grid-template-columns:1fr}
+}
+/* ---------- phones ---------- */
+@media (max-width:600px){
+  #arfx .arfx-stat{padding:18px 16px}
+  #arfx .arfx-stat-label{font-size:.9375rem}
+  #arfx .arfx-src{font-size:.625rem; letter-spacing:.06em}
+  #arfx .arfx-field{grid-template-columns:1fr; grid-template-areas:"title" "list" "link"}
+  #arfx .arfx-field-title strong{display:block; margin:4px 0 0}
+  #arfx .arfx-field-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* value cards become a swipeable row that bleeds to the screen edges */
+  #arfx .arfx-cards{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-x:contain;
+    margin-left:calc(var(--gut) * -1); margin-right:calc(var(--gut) * -1); padding:0 var(--gut) 4px; scroll-padding:0 var(--gut); scrollbar-width:none}
+  #arfx .arfx-cards::-webkit-scrollbar{display:none}
+  #arfx .arfx-card{flex:0 0 84%; scroll-snap-align:start; padding:20px}
+  #arfx .arfx-card:hover{transform:none}
+  #arfx .arfx-cta{width:100%}
+}
+
+/* ---------- preview page only (not used on the site) ---------- */
+body{margin:0; background:#040f1e}
+</style>
+</head>
+<body>
+<section id="arfx" aria-labelledby="arfx-title">
+  <div class="arfx-wrap">
+    <header class="arfx-head arfx-rv" style="--i:0">
+      <p class="arfx-eyebrow">The AquaRev Advantage</p>
+      <h2 class="arfx-title" id="arfx-title">Less chemical. Less water. <span>Same crystal-clear pool.</span></h2>
+      <p class="arfx-sub">A passive, in-line device that works with the treatment system you already run. No power, no moving parts, no consumables.</p>
+    </header>
+
+    <ul class="arfx-stats" aria-label="Independent lab and field results">
+      <li class="arfx-stat arfx-rv" style="--i:1"><span class="arfx-num" data-count="41">41<small>%</small></span><span class="arfx-stat-label">less chlorine used</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:2"><span class="arfx-num" data-count="36">36<small>%</small></span><span class="arfx-stat-label">fewer chloramines, the source of “chlorine smell”</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:3"><span class="arfx-num" data-count="23">23<small>%</small></span><span class="arfx-stat-label">less water lost to evaporation</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:4"><span class="arfx-num" data-count="64">64<small>%</small></span><span class="arfx-stat-label">lower pool chemical spend</span><span class="arfx-src is-field">Turtle Bay field data</span></li>
+    </ul>
+
+    <div class="arfx-field arfx-rv" style="--i:5">
+      <p class="arfx-field-title">Field results<strong>The Ritz-Carlton, Turtle Bay Resort</strong></p>
+      <ul class="arfx-field-list">
+        <li><b>70%</b><span>less replacement water</span></li>
+        <li><b>50%</b><span>less sodium bicarbonate</span></li>
+        <li><b>43%</b><span>less acid</span></li>
+        <li><b>20%</b><span>less pump &amp; auxiliary energy</span></li>
+      </ul>
+      <a class="arfx-more" href="/turtlebay">Read the case study<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
+    <div class="arfx-cards arfx-rv" style="--i:6">
+      <article class="arfx-card">
+        <div class="arfx-card-head"><span class="arfx-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 10.5A6 6 0 0 1 6 13.5C6 9.2 12 3 12 3z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2"/></svg></span>
+        <h3>A better guest experience</h3></div>
+        <ul>
+          <li><strong>Less chemical odor,</strong> with 36% fewer chloramines in independent testing</li>
+          <li>Crystal-clear, softer-feeling water</li>
+          <li>Pools and spas stay open, with fewer drain-and-refill closures</li>
+        </ul>
+        <a class="arfx-more" href="/case-studies">See case studies<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+      <article class="arfx-card">
+        <div class="arfx-card-head"><span class="arfx-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h3l2-5 4 10 2-5h5"/></svg></span>
+        <h3>Zero operating burden</h3></div>
+        <ul>
+          <li><strong>No power, no moving parts,</strong> no consumables</li>
+          <li>Installs in-line on the existing circulation loop, about a half day per body of water</li>
+          <li>Backed by a lifetime warranty</li>
+        </ul>
+        <a class="arfx-more" href="/specifications">View specifications<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+      <article class="arfx-card">
+        <div class="arfx-card-head"><span class="arfx-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.3 7.5 9.5 4.4-1.2 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12.2 2.3 2.3 4.2-4.6"/></svg></span>
+        <h3>Certified &amp; independently tested</h3></div>
+        <ul>
+          <li><strong>Component certified to NSF/ANSI/CAN 50</strong> via IAPMO R&amp;T</li>
+          <li>Lab-tested for chlorine use, chloramines and evaporation</li>
+          <li>Approval requirements mapped by country and US state</li>
+        </ul>
+        <a class="arfx-more" href="/certificationmap">Check certification<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+    </div>
+
+    <div class="arfx-actions arfx-rv" style="--i:7">
+      <a class="arfx-cta" href="/contact">Get Your ROI Assessment<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="arfx-more" href="/data">See the lab data<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
+    <p class="arfx-sources">Lab results: IAPMO R&amp;T test reports, treated pool compared with an untreated control. Field results: The Ritz-Carlton, Turtle Bay Resort, 32,000-gallon pilot pool, as published in the resort’s 2022 ESG Report; chemical spend from the pilot pool’s invoice records. Results vary by pool, climate and operation.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var root = document.getElementById('arfx'); if (!root || !('IntersectionObserver' in window)) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;                                   // static, final values already in the markup
+  root.classList.add('is-armed');
+
+  function countUp(el){
+    var end = parseInt(el.getAttribute('data-count'), 10);
+    var t0 = null, dur = 1400;
+    function frame(t){
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.firstChild.nodeValue = String(Math.round(end * e));
+      if (p < 1) requestAnimationFrame(frame); else el.firstChild.nodeValue = String(end);
+    }
+    el.firstChild.nodeValue = '0';
+    requestAnimationFrame(frame);
+    // If animation frames stall (background tab, throttled device), still land on the real number.
+    setTimeout(function(){ el.firstChild.nodeValue = String(end); }, dur + 400);
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      en.target.classList.add('is-in');
+      var n = en.target.querySelector('[data-count]');
+      if (n) setTimeout(function(){ countUp(n); }, (parseInt(getComputedStyle(en.target).getPropertyValue('--i'), 10) || 0) * 80);
+      io.unobserve(en.target);
+    });
+  }, { threshold: 0.25 });
+  [].forEach.call(root.querySelectorAll('.arfx-rv'), function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
