@@ -56,6 +56,36 @@ python src/render_loop.py src/plate.png media
 python src/make_badges.py "../Assets" img
 ```
 
+## Logo marquee (#arlm)
+
+The client-logo strip directly under the hero, rebuilt 2026-11-03 to replace the template marquee
+(Section 3). That strip had three problems:
+- Its third group was template placeholder logos.
+- Its groups scrolled at three different speeds, so logos overlapped and the loop jumped.
+- Its logos were 1x PNGs, several of them stretched.
+
+| File | Role |
+|---|---|
+| `AquaRev_Logo_Marquee.html` | Master: label, the 13-logo list (order, per-logo `--h` height, alt text), CSS and JS. |
+| `build-marquee.sh` | Generates `logo-marquee.css/js`, `webflow-embed-logo-marquee.html`, `preview-marquee.html` (hero + strip). |
+| `logos/` | White-on-transparent marks made by `src/make_logos.py` from `Assets/Client Logos` (SVG where the vector was clean, 2x PNG knock-outs for boxed logos). |
+
+**How it works**
+- **Loop:** the script clones the list once (`aria-hidden`, empty alt), and CSS slides the track exactly
+  −50%, so the loop is seamless at any width.
+- **Speed:** the duration is set from the list width, so the speed is a constant 34 px/s on every screen.
+- **Pausing:** it pauses on hover and while off screen, and has a pause/play button.
+- **Reduced motion:** visitors with *reduce motion* on, or without JS, get a static, centred, wrapping row.
+
+**Changing logos**
+1. Add or replace the source in `src/make_logos.py`.
+2. Add an `<li>` with `--h` and the file's width/height in the master. Optical rule: h = √(4000 / aspect),
+   26–52 px.
+3. Run `./build-marquee.sh`, push, and replace the code of embed `af25d348…`.
+
+**Webflow:** page-level HtmlEmbed `af25d348-0a33-11c3-5972-565137cabd3d`, directly after the hero embed.
+The old **Section 3** is hidden, not deleted.
+
 ## Where it lives in Webflow (home page)
 
 Installed 2026-11-03 through the Webflow connector:
