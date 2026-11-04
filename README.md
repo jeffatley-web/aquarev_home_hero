@@ -56,10 +56,16 @@ python src/render_loop.py src/plate.png media
 python src/make_badges.py "../Assets" img
 ```
 
-## Installing in Webflow (home page)
+## Where it lives in Webflow (home page)
 
-1. In the Designer, select the old hero section (`section.hero-home`, the water video with three H1s).
-2. Add an **Embed** element directly above it, as a child of the page body (not inside a container, so it
-   runs full width), and paste the whole of `webflow-embed-home-hero.html`.
-3. Hide or delete `section.hero-home`, so the page has one H1.
-4. Publish when ready.
+Installed 2026-11-03 through the Webflow connector:
+
+- **Live embed:** page-level HtmlEmbed `797c463a-9858-5a88-c884-8f7a8fb09e87` on Home
+  (`691fa5d73fc3a5a75a65f012`), a direct child of the body between the hidden **Hero 1** component
+  and Section 3. Webflow won't place elements beside a component instance, so it sits after Hero 1
+  instead of before it. The result is the same because Hero 1 is hidden.
+- **Old hero:** the Hero 1 component's root section (`Hero Home`) is hidden, so the page has one H1. An
+  empty embed (`864f6816…`) was added inside that hidden section during setup. It renders nothing and can
+  be deleted.
+- **Copy changes:** rebuild, then replace the code of embed `797c463a…` with
+  `webflow-embed-home-hero.html` (paste it, or ask Claude to set it through the connector), and publish.
