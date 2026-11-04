@@ -74,7 +74,8 @@ The client-logo strip directly under the hero, rebuilt 2026-11-03 to replace the
 - **Loop:** the script clones the list once (`aria-hidden`, empty alt), and CSS slides the track exactly
   −50%, so the loop is seamless at any width.
 - **Speed:** the duration is set from the list width, so the speed is a constant 34 px/s on every screen.
-- **Pausing:** it pauses on hover and while off screen, and has a pause/play button.
+- **Continuous by design (Jeff, 2026-11-03):** no label, no pause button, no hover pause. It only idles
+  while off screen, where nobody can see it.
 - **Reduced motion:** visitors with *reduce motion* on, or without JS, get a static, centred, wrapping row.
 
 **Changing logos**

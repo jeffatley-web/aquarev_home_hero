@@ -3,12 +3,8 @@
   var root = document.getElementById('arlm'); if (!root) return;
   var track = root.querySelector('.arlm-track');
   var list = track.querySelector('.arlm-list');
-  var btn = root.querySelector('.arlm-motion');
-  var KEY = 'arlm-motion-off';
   var SPEED = 34;                       // px per second, the same at every screen width
   var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches:false };
-  var userOff = false;
-  try { userOff = localStorage.getItem(KEY) === '1'; } catch (e) {}
 
   // Second, identical copy for the seamless loop; hidden from screen readers and not focusable.
   var clone = list.cloneNode(true);
@@ -25,18 +21,9 @@
     var on = !reduce.matches;
     root.classList.toggle('is-running', on);
     clone.style.display = on ? '' : 'none';
-    root.classList.toggle('is-paused', userOff);
-    btn.hidden = !on;
-    btn.setAttribute('aria-pressed', userOff ? 'true' : 'false');
-    btn.setAttribute('aria-label', userOff ? 'Play logo scrolling' : 'Pause logo scrolling');
     if (on) setDuration();
   }
 
-  btn.addEventListener('click', function(){
-    userOff = !userOff;
-    try { localStorage.setItem(KEY, userOff ? '1' : '0'); } catch (e) {}
-    sync();
-  });
   if (reduce.addEventListener) reduce.addEventListener('change', sync); else if (reduce.addListener) reduce.addListener(sync);
   if ('ResizeObserver' in window) new ResizeObserver(setDuration).observe(list);
   else window.addEventListener('resize', setDuration);
