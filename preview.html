@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preview: AquaRev home hero (local, mirrors the Webflow embed)</title>
+<style>
+body{margin:0;background:#fff;font-family:Arial,sans-serif}
+.w-nav{position:sticky;top:0;z-index:10;height:103px;background:#040f1e;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font:600 14px Arial,sans-serif}
+.w-nav b{padding:12px 18px;border-radius:10px;background:#0000ff}
+.next{padding:80px 32px;min-height:60vh;background:#f4f7fb;color:#0b1d33}
+@media (max-width:767px){.w-nav{height:72px;padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="w-nav">AquaRev Water (site nav stand-in)<b>ROI Assessment</b></div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="home-hero.css">
+<section id="arhh" aria-labelledby="arhh-title">
+  <div class="arhh-media">
+    <picture class="arhh-poster">
+      <source media="(max-width: 899px)" type="image/webp" srcset="media/hero-mobile.webp" width="720" height="760">
+      <source media="(max-width: 899px)" srcset="media/hero-mobile.jpg" width="720" height="760">
+      <source type="image/webp" srcset="media/hero-desktop.webp" width="1600" height="900">
+      <img src="media/hero-desktop.jpg" width="1600" height="900" alt="The AquaRev in-line water conditioner surrounded by moving pool water" fetchpriority="high" decoding="async">
+    </picture>
+    <video class="arhh-video" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback data-desktop="media/hero-desktop.mp4" data-mobile="media/hero-mobile.mp4"></video>
+  </div>
+  <div class="arhh-scrim" aria-hidden="true"></div>
+  <div class="arhh-inner">
+    <div class="arhh-copy">
+      <p class="arhh-eyebrow arhh-rv" style="--i:0">The AquaRev Advantage for <span>Commercial Pools.</span></p>
+      <h1 class="arhh-title" id="arhh-title"><span class="l1 arhh-rv" style="--i:1">Cleaner Water.</span> <span class="l2 arhh-rv" style="--i:2">Reduced Costs.</span> <span class="l3 arhh-rv" style="--i:3">Lifetime Warranty.</span></h1>
+      <p class="arhh-lede arhh-rv" style="--i:4">Passive in-line water conditioning for commercial pools that helps reduce chemicals, water loss, and operating costs.</p>
+      <div class="arhh-actions arhh-rv" style="--i:5">
+        <a class="arhh-cta" href="/contact">Get Your ROI Assessment<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="arhh-link" href="/case-studies">See case studies</a>
+      </div>
+      <ul class="arhh-badges arhh-rv" style="--i:6" aria-label="Certifications, memberships and warranty">
+        <li><img src="img/iapmo.png" width="187" height="112" alt="IAPMO" decoding="async"></li>
+        <li><img src="img/nsf.png" width="110" height="112" alt="NSF" decoding="async"></li>
+        <li class="b-wqa"><img src="img/wqa.png" width="276" height="88" alt="Water Quality Association" decoding="async"></li>
+        <li><img src="img/bbb.png" width="81" height="112" alt="Better Business Bureau" decoding="async"></li>
+        <li><img src="img/usa.png" width="112" height="112" alt="Made in USA" decoding="async"></li>
+        <li class="arhh-warranty"><span class="w-box"><svg viewBox="0 0 28 32" aria-hidden="true"><path d="M14 1.5 2.5 6v8.6c0 7.6 4.9 13.4 11.5 15.9 6.6-2.5 11.5-8.3 11.5-15.9V6z" fill="#0a5bd6" stroke="#5cc4ff" stroke-width="1.6"/><path d="m8.4 15.6 4 4 7.4-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lifetime<small>Warranty</small></span></span></li>
+      </ul>
+      <p class="arhh-note arhh-rv" style="--i:7">Component certified to NSF/ANSI/CAN 50 via IAPMO.</p>
+    </div>
+  </div>
+  <button class="arhh-motion" type="button" aria-pressed="false" aria-label="Pause background animation" hidden><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" rx="1" fill="currentColor"/><rect x="9.6" y="2" width="3.4" height="12" rx="1" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.2v11.6a.8.8 0 0 0 1.2.7l9.4-5.8a.8.8 0 0 0 0-1.4L5.2 1.5A.8.8 0 0 0 4 2.2z" fill="currentColor"/></svg></button>
+</section>
+<section class="next"><h2>Next section</h2><p>Checks that the hero hands off cleanly to the rest of the home page.</p></section>
+<script defer src="home-hero.js"></script>
+</body>
+</html>

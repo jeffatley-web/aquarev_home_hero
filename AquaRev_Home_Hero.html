@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AquaRev Home Hero (master)</title>
+<!-- Master for the aquarevwater.us home page hero. The only file you edit; build.sh generates the
+     CSS, JS, Webflow embed and preview from it. Opens on its own in a browser.
+     Everything is scoped under #arhh so Webflow's global styles never reach the hero and vice versa. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<style>
+#arhh{
+  --navy:#011838; --navy-deep:#010f26; --ink:#ffffff; --muted:#c9dcec; --soft:rgba(214,232,247,.74);
+  --cyan:#1fdcf0; --cyan-hi:#6ef3ff; --cyan-ink:#03203a; --line:rgba(255,255,255,.22);
+  --nav:var(--arhh-nav,103px); --gut:clamp(20px,5vw,96px);
+  --display:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --text:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  position:relative; isolation:isolate; overflow:hidden; width:100%;
+  display:flex; align-items:center;
+  min-height:clamp(560px,calc(100svh - var(--nav)),920px);
+  background:radial-gradient(120% 90% at 0% 100%,#012a55 0%,transparent 55%),var(--navy);
+  color:var(--ink); font-family:var(--text); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+#arhh, #arhh *, #arhh *::before, #arhh *::after{box-sizing:border-box}
+#arhh :where(h1,p,ul,li,a,img,svg,video,picture,button){margin:0;padding:0;border:0;font:inherit;color:inherit;background:none;max-width:none;letter-spacing:normal;text-transform:none}
+#arhh :where(ul){list-style:none}
+#arhh :where(a){text-decoration:none}
+
+/* ---------- media: right-anchored 16:9 box, never cropped top or bottom ---------- */
+#arhh .arhh-media{
+  position:absolute; z-index:-1; top:0; bottom:0; right:0; height:100%; aspect-ratio:16/9;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 14%);
+}
+#arhh .arhh-poster, #arhh .arhh-poster img, #arhh .arhh-video{position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:100% 50%}
+#arhh .arhh-video{opacity:0; transition:opacity .8s ease}
+#arhh.is-playing .arhh-video{opacity:1}
+#arhh .arhh-scrim{
+  position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(1,15,38,.86) 0%,rgba(1,15,38,.64) 36%,rgba(1,15,38,.12) 58%,rgba(1,15,38,0) 66%),
+    linear-gradient(0deg,rgba(1,15,38,.55) 0%,rgba(1,15,38,0) 30%),
+    linear-gradient(180deg,rgba(1,15,38,.35) 0%,rgba(1,15,38,0) 14%);
+}
+
+/* ---------- copy ---------- */
+#arhh .arhh-inner{width:100%; max-width:1760px; margin:0 auto; padding:clamp(48px,7vh,96px) var(--gut)}
+#arhh .arhh-copy{max-width:min(900px,62%)}
+#arhh .arhh-eyebrow, #arhh .arhh-title, #arhh .arhh-lede{max-width:min(660px,100%)}
+#arhh .arhh-eyebrow{
+  display:block; text-wrap:balance;
+  font:700 clamp(1rem,.62rem + .95vw,1.5rem)/1.3 var(--display); letter-spacing:-.005em; color:var(--ink);
+  padding-left:.85em; position:relative;
+}
+#arhh .arhh-eyebrow::before{content:""; position:absolute; left:0; top:.18em; bottom:.12em; width:4px; border-radius:2px; background:var(--cyan); box-shadow:0 0 12px rgba(31,220,240,.7)}
+#arhh .arhh-eyebrow span{color:var(--cyan)}
+#arhh .arhh-title{
+  margin-top:clamp(14px,1.6vw,26px);
+  font:800 clamp(2.15rem,.9rem + 4.1vw,5.1rem)/1.02 var(--display); letter-spacing:-.028em; color:var(--ink);
+  text-shadow:0 2px 30px rgba(1,15,38,.45);
+}
+#arhh .arhh-title span{display:block; white-space:nowrap}
+#arhh .arhh-title .l2{color:var(--cyan); text-shadow:0 0 34px rgba(31,220,240,.35)}
+#arhh .arhh-lede{margin-top:clamp(16px,1.6vw,26px); max-width:34em; font:400 clamp(1.02rem,.86rem + .42vw,1.32rem)/1.5 var(--text); color:var(--muted)}
+
+#arhh .arhh-actions{margin-top:clamp(24px,2.6vw,40px); display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px}
+#arhh .arhh-cta{
+  position:relative; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+  min-height:56px; padding:16px 30px; border-radius:12px;
+  font:800 clamp(1.05rem,.95rem + .3vw,1.25rem)/1.15 var(--display); letter-spacing:-.005em; color:var(--cyan-ink);
+  background:linear-gradient(180deg,var(--cyan-hi) 0%,var(--cyan) 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),0 0 0 1px rgba(31,220,240,.5),0 10px 34px rgba(31,220,240,.32),0 0 60px rgba(31,220,240,.18);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+#arhh .arhh-cta svg{width:1.05em; height:1.05em; flex:none; transition:transform .18s ease}
+#arhh .arhh-cta:hover{transform:translateY(-2px); box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 0 0 1px rgba(31,220,240,.7),0 14px 40px rgba(31,220,240,.45),0 0 70px rgba(31,220,240,.25)}
+#arhh .arhh-cta:hover svg{transform:translateX(3px)}
+#arhh .arhh-cta:active{transform:translateY(0)}
+#arhh .arhh-cta::after{content:""; position:absolute; top:0; bottom:0; left:-40%; width:30%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent); transform:skewX(-18deg); opacity:0; pointer-events:none}
+#arhh .arhh-link{display:inline-flex; align-items:center; gap:.4em; min-height:44px; font:600 1rem/1.2 var(--text); color:#bdeefe; text-decoration:underline; text-decoration-color:rgba(189,238,254,.4); text-underline-offset:5px; text-decoration-thickness:1px}
+#arhh .arhh-link:hover{color:#fff; text-decoration-color:#fff}
+#arhh .arhh-cta:focus-visible, #arhh .arhh-link:focus-visible, #arhh .arhh-motion:focus-visible{outline:3px solid #fff; outline-offset:3px}
+
+/* ---------- trust badges ---------- */
+#arhh .arhh-badges{margin-top:clamp(28px,3.4vw,52px); display:flex; flex-wrap:wrap; align-items:center; gap:14px 0}
+#arhh .arhh-badges li{display:flex; align-items:center; padding:0 clamp(12px,1.3vw,22px); border-left:1px solid var(--line)}
+#arhh .arhh-badges li:first-child{padding-left:0; border-left:0}
+#arhh .arhh-badges img{display:block; height:clamp(38px,3.4vw,60px); width:auto}
+#arhh .arhh-badges .b-wqa img{height:clamp(32px,2.8vw,50px)}
+#arhh .arhh-warranty{gap:0}
+#arhh .arhh-warranty .w-box{
+  display:inline-flex; align-items:center; gap:8px; padding:6px 12px 6px 8px; border-radius:8px;
+  border:1.5px solid #3fb2ff; background:rgba(4,40,90,.55); box-shadow:0 0 18px rgba(63,178,255,.25);
+  font:800 clamp(.72rem,.5rem + .42vw,1rem)/1.05 var(--display); letter-spacing:.02em; text-transform:uppercase; color:#fff;
+}
+#arhh .arhh-warranty svg{width:clamp(24px,2.2vw,36px); height:auto; flex:none}
+#arhh .arhh-warranty small{display:block; font-weight:700; font-size:.82em; letter-spacing:.06em; color:#d6ecff}
+#arhh .arhh-note{margin-top:14px; font:500 .8125rem/1.45 var(--text); color:var(--soft)}
+
+/* ---------- motion toggle (WCAG 2.2.2: pause moving content) ---------- */
+#arhh .arhh-motion{
+  position:absolute; right:clamp(14px,2vw,28px); bottom:clamp(14px,2vw,28px); z-index:2;
+  width:44px; height:44px; border-radius:50%; display:grid; place-items:center; cursor:pointer;
+  background:rgba(1,15,38,.62); border:1px solid rgba(255,255,255,.35); color:#fff;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:background .18s ease;
+}
+#arhh .arhh-motion:hover{background:rgba(1,15,38,.85)}
+#arhh .arhh-motion[hidden]{display:none}
+#arhh .arhh-motion svg{width:16px; height:16px}
+#arhh .arhh-motion .i-play{display:none}
+#arhh .arhh-motion[aria-pressed="true"] .i-play{display:block}
+#arhh .arhh-motion[aria-pressed="true"] .i-pause{display:none}
+
+/* ---------- entrance + CTA sheen (only when motion is welcome) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #arhh .arhh-rv{animation:arhh-up .75s cubic-bezier(.2,.7,.2,1) both; animation-delay:calc(var(--i,0) * 90ms + 60ms)}
+  #arhh .arhh-cta::after{animation:arhh-sheen 6.5s ease-in-out 1.6s infinite}
+}
+@keyframes arhh-up{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
+@keyframes arhh-sheen{0%{left:-40%; opacity:0} 4%{opacity:1} 18%{left:120%; opacity:1} 19%,100%{left:120%; opacity:0}}
+
+/* ---------- mid widths: keep the product clear of the copy ---------- */
+@media (max-width:1279px) and (min-width:900px){
+  #arhh .arhh-media{right:-8%}
+  #arhh .arhh-copy{max-width:60%}
+}
+
+/* ---------- phones and portrait tablets: product on top, copy below ---------- */
+@media (max-width:899px){
+  #arhh{display:block; min-height:0; background:var(--navy); --mh:clamp(220px,min(72vw,40svh),480px)}
+  #arhh .arhh-media{
+    position:relative; z-index:0; inset:auto; right:auto; width:100%; aspect-ratio:auto;
+    height:var(--mh);
+    -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);
+            mask-image:linear-gradient(180deg,#000 72%,transparent 100%);
+  }
+  #arhh .arhh-poster, #arhh .arhh-video{left:50%; right:auto; width:auto; height:100%; aspect-ratio:720/760; transform:translateX(-50%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+  #arhh .arhh-poster img{object-position:50% 50%}
+  #arhh .arhh-video{object-position:50% 50%}
+  #arhh .arhh-scrim{display:none}
+  #arhh .arhh-inner{position:relative; z-index:1; margin-top:-28px; padding:0 var(--gut) 44px}
+  #arhh .arhh-copy{max-width:640px}
+  #arhh .arhh-title{font-size:clamp(2rem,1.1rem + 5vw,3.6rem)}
+  #arhh .arhh-actions{gap:6px 24px}
+  #arhh .arhh-badges{gap:16px 22px}
+  #arhh .arhh-badges li{padding:0; border-left:0}
+  #arhh .arhh-badges img{height:36px}
+  #arhh .arhh-badges .b-wqa img{height:30px}
+  #arhh .arhh-motion{top:calc(var(--mh) - 60px); bottom:auto; right:16px; width:40px; height:40px}
+}
+@media (max-width:560px){
+  #arhh .arhh-cta{width:100%}
+}
+@media (max-width:420px){
+  #arhh .arhh-badges{gap:14px 18px}
+  #arhh .arhh-badges img{height:32px}
+  #arhh .arhh-badges .b-wqa img{height:26px}
+}
+@media (max-width:359px){
+  #arhh .arhh-title span{white-space:normal}
+}
+
+/* ---------- preview page only (not used on the site) ---------- */
+body{margin:0; background:#040f1e}
+</style>
+</head>
+<body>
+<section id="arhh" aria-labelledby="arhh-title">
+  <div class="arhh-media">
+    <picture class="arhh-poster">
+      <source media="(max-width: 899px)" type="image/webp" srcset="media/hero-mobile.webp" width="720" height="760">
+      <source media="(max-width: 899px)" srcset="media/hero-mobile.jpg" width="720" height="760">
+      <source type="image/webp" srcset="media/hero-desktop.webp" width="1600" height="900">
+      <img src="media/hero-desktop.jpg" width="1600" height="900" alt="The AquaRev in-line water conditioner surrounded by moving pool water" fetchpriority="high" decoding="async">
+    </picture>
+    <video class="arhh-video" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback data-desktop="media/hero-desktop.mp4" data-mobile="media/hero-mobile.mp4"></video>
+  </div>
+  <div class="arhh-scrim" aria-hidden="true"></div>
+  <div class="arhh-inner">
+    <div class="arhh-copy">
+      <p class="arhh-eyebrow arhh-rv" style="--i:0">The AquaRev Advantage for <span>Commercial Pools.</span></p>
+      <h1 class="arhh-title" id="arhh-title"><span class="l1 arhh-rv" style="--i:1">Cleaner Water.</span> <span class="l2 arhh-rv" style="--i:2">Reduced Costs.</span> <span class="l3 arhh-rv" style="--i:3">Lifetime Warranty.</span></h1>
+      <p class="arhh-lede arhh-rv" style="--i:4">Passive in-line water conditioning for commercial pools that helps reduce chemicals, water loss, and operating costs.</p>
+      <div class="arhh-actions arhh-rv" style="--i:5">
+        <a class="arhh-cta" href="/contact">Get Your ROI Assessment<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="arhh-link" href="/case-studies">See case studies</a>
+      </div>
+      <ul class="arhh-badges arhh-rv" style="--i:6" aria-label="Certifications, memberships and warranty">
+        <li><img src="img/iapmo.png" width="187" height="112" alt="IAPMO" decoding="async"></li>
+        <li><img src="img/nsf.png" width="110" height="112" alt="NSF" decoding="async"></li>
+        <li class="b-wqa"><img src="img/wqa.png" width="276" height="88" alt="Water Quality Association" decoding="async"></li>
+        <li><img src="img/bbb.png" width="81" height="112" alt="Better Business Bureau" decoding="async"></li>
+        <li><img src="img/usa.png" width="112" height="112" alt="Made in USA" decoding="async"></li>
+        <li class="arhh-warranty"><span class="w-box"><svg viewBox="0 0 28 32" aria-hidden="true"><path d="M14 1.5 2.5 6v8.6c0 7.6 4.9 13.4 11.5 15.9 6.6-2.5 11.5-8.3 11.5-15.9V6z" fill="#0a5bd6" stroke="#5cc4ff" stroke-width="1.6"/><path d="m8.4 15.6 4 4 7.4-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lifetime<small>Warranty</small></span></span></li>
+      </ul>
+      <p class="arhh-note arhh-rv" style="--i:7">Component certified to NSF/ANSI/CAN 50 via IAPMO.</p>
+    </div>
+  </div>
+  <button class="arhh-motion" type="button" aria-pressed="false" aria-label="Pause background animation" hidden><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" rx="1" fill="currentColor"/><rect x="9.6" y="2" width="3.4" height="12" rx="1" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.2v11.6a.8.8 0 0 0 1.2.7l9.4-5.8a.8.8 0 0 0 0-1.4L5.2 1.5A.8.8 0 0 0 4 2.2z" fill="currentColor"/></svg></button>
+</section>
+<script>
+(function(){
+  var root = document.getElementById('arhh'); if (!root) return;
+  var video = root.querySelector('.arhh-video');
+  var btn = root.querySelector('.arhh-motion');
+  var KEY = 'arhh-motion-off';
+
+  // Keep the hero exactly one screen tall below the site's sticky nav.
+  function navOffset(){
+    var nav = document.querySelector('.w-nav'); var h = 0;
+    if (nav){ var cs = getComputedStyle(nav); if (cs.position === 'sticky' || cs.position === 'fixed') h = Math.round(nav.getBoundingClientRect().height); }
+    root.style.setProperty('--arhh-nav', h + 'px');
+  }
+  navOffset(); window.addEventListener('resize', navOffset); window.addEventListener('load', navOffset);
+
+  function mq(q){ return window.matchMedia ? window.matchMedia(q) : { matches:false }; }
+  function onChange(m, fn){ if (m.addEventListener) m.addEventListener('change', fn); else if (m.addListener) m.addListener(fn); }
+  var desk = mq('(min-width: 900px)');
+  var reduce = mq('(prefers-reduced-motion: reduce)');
+  var conn = navigator.connection || {};
+  var lowData = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+
+  var userOff = false;
+  try { userOff = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  var inView = true, ready = false;
+
+  function allowed(){ return !reduce.matches && !lowData; }
+  function wanted(){ return ready && allowed() && !userOff && inView && !document.hidden; }
+  function source(){ return desk.matches ? video.getAttribute('data-desktop') : video.getAttribute('data-mobile'); }
+
+  function sync(){
+    btn.hidden = !allowed() || !ready;
+    btn.setAttribute('aria-pressed', userOff ? 'true' : 'false');
+    btn.setAttribute('aria-label', userOff ? 'Play background animation' : 'Pause background animation');
+    if (!wanted()){ if (!video.paused) video.pause(); return; }
+    var src = source();
+    if (video.getAttribute('src') !== src){ root.classList.remove('is-playing'); video.setAttribute('src', src); }
+    var p = video.play(); if (p && p.catch) p.catch(function(){ root.classList.remove('is-playing'); });
+  }
+
+  video.addEventListener('playing', function(){ root.classList.add('is-playing'); });
+  video.addEventListener('error', function(){ root.classList.remove('is-playing'); btn.hidden = true; });
+  btn.addEventListener('click', function(){
+    userOff = !userOff;
+    try { localStorage.setItem(KEY, userOff ? '1' : '0'); } catch (e) {}
+    sync();
+  });
+  onChange(desk, sync); onChange(reduce, sync);
+  document.addEventListener('visibilitychange', sync);
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ inView = es[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(root);
+  }
+  // Start the video only after the page has loaded, so it never competes with the poster or the rest of the page.
+  function start(){ ready = true; sync(); }
+  if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
+})();
+</script>
+</body>
+</html>
