@@ -87,8 +87,6 @@
 #arfx .arfx-cta:hover svg{transform:translateX(3px)}
 #arfx .arfx-cta:focus-visible, #arfx .arfx-more:focus-visible, #arfx .arfx-feature:focus-visible{outline:3px solid #fff; outline-offset:3px}
 
-#arfx .arfx-sources{margin:clamp(22px,2.4vw,32px) auto 0; max-width:880px; text-align:center; font:400 .75rem/1.6 var(--text); color:var(--soft)}
-
 /* ---------- reveal + count-up (motion only when welcome; final values are always in the HTML) ---------- */
 @media (prefers-reduced-motion:no-preference){
   #arfx.is-armed .arfx-rv{opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--i,0) * 70ms)}

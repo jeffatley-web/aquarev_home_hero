@@ -9,7 +9,8 @@
      Structure (Jeff, 2026-11-03): product introduction → every topline performance figure → feature link to
      Case Studies → three short value cards that link deeper → ROI CTA. Keep card copy to one line.
      Every figure is sourced: IAPMO R&T test reports (lab) or Turtle Bay Resort 2022 ESG Report and the pilot
-     pool's invoice records (field). Do not add a number without a source in .arfx-sources. -->
+     pool's invoice records (field). The on-page sources note was removed at Jeff's request (2026-11-04);
+     keep each figure's source tag and the /data and /case-studies links, and never add an unsourced number. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
 <style>
 #arfx{
@@ -100,8 +101,6 @@
 #arfx .arfx-cta:hover svg{transform:translateX(3px)}
 #arfx .arfx-cta:focus-visible, #arfx .arfx-more:focus-visible, #arfx .arfx-feature:focus-visible{outline:3px solid #fff; outline-offset:3px}
 
-#arfx .arfx-sources{margin:clamp(22px,2.4vw,32px) auto 0; max-width:880px; text-align:center; font:400 .75rem/1.6 var(--text); color:var(--soft)}
-
 /* ---------- reveal + count-up (motion only when welcome; final values are always in the HTML) ---------- */
 @media (prefers-reduced-motion:no-preference){
   #arfx.is-armed .arfx-rv{opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--i,0) * 70ms)}
@@ -190,7 +189,6 @@ body{margin:0; background:#040f1e}
       <a class="arfx-more" href="/data">See the lab data<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
 
-    <p class="arfx-sources">Lab results: IAPMO R&amp;T test reports, treated pool compared with an untreated control. Field results: The Ritz-Carlton, Turtle Bay Resort pilot pool, as published in the resort’s 2022 ESG Report; chemical spend from the pilot pool’s invoice records. Results vary by pool, climate and operation.</p>
   </div>
 </section>
 <script>
