@@ -2,8 +2,6 @@
 (function(){
   var root = document.getElementById('arhh'); if (!root) return;
   var video = root.querySelector('.arhh-video');
-  var btn = root.querySelector('.arhh-motion');
-  var KEY = 'arhh-motion-off';
 
   // Keep the hero exactly one screen tall below the site's sticky nav.
   function navOffset(){
@@ -20,18 +18,15 @@
   var conn = navigator.connection || {};
   var lowData = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
 
-  var userOff = false;
-  try { userOff = localStorage.getItem(KEY) === '1'; } catch (e) {}
   var inView = true, ready = false;
 
+  // Continuous loop by design (Jeff, 2026-11-04): no pause control. It only idles off screen or in a
+  // background tab, and is skipped for reduce-motion / Data Saver visitors (poster shows instead).
   function allowed(){ return !reduce.matches && !lowData; }
-  function wanted(){ return ready && allowed() && !userOff && inView && !document.hidden; }
+  function wanted(){ return ready && allowed() && inView && !document.hidden; }
   function source(){ return desk.matches ? video.getAttribute('data-desktop') : video.getAttribute('data-mobile'); }
 
   function sync(){
-    btn.hidden = !allowed() || !ready;
-    btn.setAttribute('aria-pressed', userOff ? 'true' : 'false');
-    btn.setAttribute('aria-label', userOff ? 'Play background animation' : 'Pause background animation');
     if (!wanted()){ if (!video.paused) video.pause(); return; }
     var src = source();
     if (video.getAttribute('src') !== src){ root.classList.remove('is-playing'); video.setAttribute('src', src); }
@@ -39,12 +34,7 @@
   }
 
   video.addEventListener('playing', function(){ root.classList.add('is-playing'); });
-  video.addEventListener('error', function(){ root.classList.remove('is-playing'); btn.hidden = true; });
-  btn.addEventListener('click', function(){
-    userOff = !userOff;
-    try { localStorage.setItem(KEY, userOff ? '1' : '0'); } catch (e) {}
-    sync();
-  });
+  video.addEventListener('error', function(){ root.classList.remove('is-playing'); });
   onChange(desk, sync); onChange(reduce, sync);
   document.addEventListener('visibilitychange', sync);
   if ('IntersectionObserver' in window){

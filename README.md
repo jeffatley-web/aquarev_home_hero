@@ -28,7 +28,7 @@ copy and CTA are in the page HTML for search engines and paint before any script
   the tab is hidden, swaps desktop/mobile files at the breakpoint, and fades in over a poster that is the
   exact first frame. Not loaded at all with *reduce motion* turned on or *Data Saver* / 2G; the poster
   shows instead.
-- **Accessibility:** pause/play button (WCAG 2.2.2), remembered per visitor; video is `aria-hidden`;
+- **Accessibility:** continuous loop, no pause button (Jeff, 2026-11-04); video is `aria-hidden`;
   logos have alt text; visible focus rings; entrance and CTA-sheen animations only run when motion is
   welcome; text contrast on navy is well above AA.
 

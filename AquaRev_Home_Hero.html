@@ -81,7 +81,7 @@
 #arhh .arhh-cta::after{content:""; position:absolute; top:0; bottom:0; left:-40%; width:30%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent); transform:skewX(-18deg); opacity:0; pointer-events:none}
 #arhh .arhh-link{display:inline-flex; align-items:center; gap:.4em; min-height:44px; font:600 1rem/1.2 var(--text); color:#bdeefe; text-decoration:underline; text-decoration-color:rgba(189,238,254,.4); text-underline-offset:5px; text-decoration-thickness:1px}
 #arhh .arhh-link:hover{color:#fff; text-decoration-color:#fff}
-#arhh .arhh-cta:focus-visible, #arhh .arhh-link:focus-visible, #arhh .arhh-motion:focus-visible{outline:3px solid #fff; outline-offset:3px}
+#arhh .arhh-cta:focus-visible, #arhh .arhh-link:focus-visible{outline:3px solid #fff; outline-offset:3px}
 
 /* ---------- trust badges ---------- */
 #arhh .arhh-badges{margin-top:clamp(28px,3.4vw,52px); display:flex; flex-wrap:wrap; align-items:center; gap:14px 0}
@@ -99,19 +99,6 @@
 #arhh .arhh-warranty small{display:block; font-weight:700; font-size:.82em; letter-spacing:.06em; color:#d6ecff}
 #arhh .arhh-note{margin-top:14px; font:500 .8125rem/1.45 var(--text); color:var(--soft)}
 
-/* ---------- motion toggle (WCAG 2.2.2: pause moving content) ---------- */
-#arhh .arhh-motion{
-  position:absolute; right:clamp(14px,2vw,28px); bottom:clamp(14px,2vw,28px); z-index:2;
-  width:44px; height:44px; border-radius:50%; display:grid; place-items:center; cursor:pointer;
-  background:rgba(1,15,38,.62); border:1px solid rgba(255,255,255,.35); color:#fff;
-  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:background .18s ease;
-}
-#arhh .arhh-motion:hover{background:rgba(1,15,38,.85)}
-#arhh .arhh-motion[hidden]{display:none}
-#arhh .arhh-motion svg{width:16px; height:16px}
-#arhh .arhh-motion .i-play{display:none}
-#arhh .arhh-motion[aria-pressed="true"] .i-play{display:block}
-#arhh .arhh-motion[aria-pressed="true"] .i-pause{display:none}
 
 /* ---------- entrance + CTA sheen (only when motion is welcome) ---------- */
 @media (prefers-reduced-motion:no-preference){
@@ -150,7 +137,6 @@
   #arhh .arhh-badges li{padding:0; border-left:0}
   #arhh .arhh-badges img{height:36px}
   #arhh .arhh-badges .b-wqa img{height:30px}
-  #arhh .arhh-motion{top:calc(var(--mh) - 60px); bottom:auto; right:16px; width:40px; height:40px}
 }
 @media (max-width:560px){
   #arhh .arhh-cta{width:100%}
@@ -200,14 +186,11 @@ body{margin:0; background:#040f1e}
       <p class="arhh-note arhh-rv" style="--i:7">Component certified to NSF/ANSI/CAN 50 via IAPMO.</p>
     </div>
   </div>
-  <button class="arhh-motion" type="button" aria-pressed="false" aria-label="Pause background animation" hidden><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" rx="1" fill="currentColor"/><rect x="9.6" y="2" width="3.4" height="12" rx="1" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.2v11.6a.8.8 0 0 0 1.2.7l9.4-5.8a.8.8 0 0 0 0-1.4L5.2 1.5A.8.8 0 0 0 4 2.2z" fill="currentColor"/></svg></button>
 </section>
 <script>
 (function(){
   var root = document.getElementById('arhh'); if (!root) return;
   var video = root.querySelector('.arhh-video');
-  var btn = root.querySelector('.arhh-motion');
-  var KEY = 'arhh-motion-off';
 
   // Keep the hero exactly one screen tall below the site's sticky nav.
   function navOffset(){
@@ -224,18 +207,15 @@ body{margin:0; background:#040f1e}
   var conn = navigator.connection || {};
   var lowData = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
 
-  var userOff = false;
-  try { userOff = localStorage.getItem(KEY) === '1'; } catch (e) {}
   var inView = true, ready = false;
 
+  // Continuous loop by design (Jeff, 2026-11-04): no pause control. It only idles off screen or in a
+  // background tab, and is skipped for reduce-motion / Data Saver visitors (poster shows instead).
   function allowed(){ return !reduce.matches && !lowData; }
-  function wanted(){ return ready && allowed() && !userOff && inView && !document.hidden; }
+  function wanted(){ return ready && allowed() && inView && !document.hidden; }
   function source(){ return desk.matches ? video.getAttribute('data-desktop') : video.getAttribute('data-mobile'); }
 
   function sync(){
-    btn.hidden = !allowed() || !ready;
-    btn.setAttribute('aria-pressed', userOff ? 'true' : 'false');
-    btn.setAttribute('aria-label', userOff ? 'Play background animation' : 'Pause background animation');
     if (!wanted()){ if (!video.paused) video.pause(); return; }
     var src = source();
     if (video.getAttribute('src') !== src){ root.classList.remove('is-playing'); video.setAttribute('src', src); }
@@ -243,12 +223,7 @@ body{margin:0; background:#040f1e}
   }
 
   video.addEventListener('playing', function(){ root.classList.add('is-playing'); });
-  video.addEventListener('error', function(){ root.classList.remove('is-playing'); btn.hidden = true; });
-  btn.addEventListener('click', function(){
-    userOff = !userOff;
-    try { localStorage.setItem(KEY, userOff ? '1' : '0'); } catch (e) {}
-    sync();
-  });
+  video.addEventListener('error', function(){ root.classList.remove('is-playing'); });
   onChange(desk, sync); onChange(reduce, sync);
   document.addEventListener('visibilitychange', sync);
   if ('IntersectionObserver' in window){
