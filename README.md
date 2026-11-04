@@ -87,6 +87,23 @@ The client-logo strip directly under the hero, rebuilt 2026-11-03 to replace the
 **Webflow:** page-level HtmlEmbed `af25d348-0a33-11c3-5972-565137cabd3d`, directly after the hero embed.
 The old **Section 3** is hidden, not deleted.
 
+## Features section (#arfx)
+
+"Hotels / Resorts & Commercial Operators Advantage", the section under the logo banner, replacing
+Webflow Section 7 (2026-11-04). Master `AquaRev_Features.html`, build `build-features.sh` →
+`features.css/js`, `webflow-embed-features.html`, `preview-features.html` (hero + banner + section).
+
+- **Order:** product introduction (two paragraphs), then "Average Consumption & Cost Reductions" (nine
+  figures in a 3×3 grid, one cyan gradient), then the Case Studies feature link, then three one-line
+  value cards (/solution, /specifications, /certificationmap), then the ROI Assessment CTA and "See the
+  lab data" (/data).
+- **Figures:** IAPMO R&T lab (41% chlorine, 36% chloramines, 23% evaporation) and Turtle Bay field data
+  (64% chemical spend, 70% replacement water, 50% bicarbonate, 43% acid, 30% salt, 20% pump energy).
+  Each tile carries a source tag. No on-page sources note (removed at Jeff's request).
+- **Count-up:** runs once on scroll and always lands on the real number. Reduced-motion visitors see the
+  final values.
+- **Webflow:** page-level embed directly after the logo-banner embed. Section 7 is hidden, not deleted.
+
 ## Where it lives in Webflow (home page)
 
 Installed 2026-11-03 through the Webflow connector:
