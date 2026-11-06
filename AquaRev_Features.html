@@ -45,15 +45,16 @@
 #arfx .arfx-stat{
   position:relative; overflow:hidden; border-radius:16px; padding:clamp(18px,1.8vw,24px) clamp(18px,2vw,26px);
   background:linear-gradient(180deg,var(--panel-hi),var(--panel)); border:1px solid var(--line);
-  display:grid; grid-template-columns:auto 1fr; grid-template-rows:1fr auto; column-gap:clamp(14px,1.6vw,22px); row-gap:8px; align-items:center;
+  display:grid; grid-template-columns:auto 1fr; column-gap:clamp(14px,1.6vw,22px); row-gap:8px; align-items:center;
 }
 #arfx .arfx-stat::before{content:""; position:absolute; inset:0 0 auto 0; height:2px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:.5}
-#arfx .arfx-num{grid-row:span 2; min-width:2.05em; font:800 clamp(2.6rem,1.7rem + 2.4vw,4rem)/.9 var(--display); letter-spacing:-.04em; font-variant-numeric:tabular-nums;
+#arfx .arfx-num{min-width:2.05em; font:800 clamp(2.6rem,1.7rem + 2.4vw,4rem)/.9 var(--display); letter-spacing:-.04em; font-variant-numeric:tabular-nums;
   background:linear-gradient(180deg,#ffffff 0%,var(--cyan-hi) 55%,var(--cyan) 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
 #arfx .arfx-num small{font-size:.48em; margin-left:2px; vertical-align:.7em; letter-spacing:-.02em}
-#arfx .arfx-stat-label{align-self:end; font:600 clamp(1rem,.95rem + .2vw,1.125rem)/1.3 var(--text); color:var(--ink)}
-#arfx .arfx-src{align-self:start; display:inline-flex; align-items:center; gap:6px; font:600 .6875rem/1.2 var(--text); letter-spacing:.1em; text-transform:uppercase; color:var(--soft)}
-#arfx .arfx-src::before{content:""; flex:none; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
+#arfx .arfx-stat-label{font:600 clamp(1rem,.95rem + .2vw,1.125rem)/1.3 var(--text); color:var(--ink)}
+/* one collective source note under the grid (Jeff, 2026-11-06) in place of per-tile tags */
+#arfx .arfx-stats-note{margin-top:12px; display:flex; align-items:center; gap:8px; font:500 .8125rem/1.45 var(--text); color:var(--soft)}
+#arfx .arfx-stats-note::before{content:""; flex:none; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
 /* one consistent number gradient and accent for every figure; the tag text says lab or field */
 
 /* sub-header above the figures */
@@ -119,12 +120,12 @@
 /* ---------- phones ---------- */
 @media (max-width:600px){
   #arfx .arfx-intro{text-align:left; text-wrap:pretty}
-  #arfx .arfx-stat{grid-template-columns:1fr; grid-template-rows:auto; padding:16px 14px; row-gap:6px}
-  #arfx .arfx-num{grid-row:auto; font-size:2.6rem}
-  #arfx .arfx-stat-label{align-self:start; font-size:.9375rem}
-  #arfx .arfx-src{font-size:.625rem; letter-spacing:.06em}
-  #arfx .arfx-stats > :last-child{grid-template-columns:auto 1fr; column-gap:16px}
-  #arfx .arfx-stats > :last-child .arfx-num{grid-row:span 2}
+  #arfx .arfx-stat{grid-template-columns:1fr; padding:16px 14px; row-gap:6px; align-items:start; align-content:start}
+  #arfx .arfx-num{font-size:2.6rem}
+  #arfx .arfx-stat-label{font-size:.9375rem}
+  #arfx .arfx-stats > :last-child{grid-template-columns:auto 1fr; column-gap:16px; align-items:center}
+  #arfx .arfx-stats-note{align-items:flex-start; font-size:.75rem}
+  #arfx .arfx-stats-note::before{margin-top:.45em}
   #arfx .arfx-cards{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-x:contain;
     margin-left:calc(var(--gut) * -1); margin-right:calc(var(--gut) * -1); padding:0 var(--gut) 4px; scroll-padding:0 var(--gut); scrollbar-width:none}
   #arfx .arfx-cards::-webkit-scrollbar{display:none}
@@ -151,16 +152,17 @@ body{margin:0; background:#040f1e}
 
     <h3 class="arfx-stats-head arfx-rv" id="arfx-stats-head" style="--i:1">Average Consumption &amp; Cost Reductions</h3>
     <ul class="arfx-stats" aria-labelledby="arfx-stats-head">
-      <li class="arfx-stat arfx-rv" style="--i:1"><span class="arfx-num" data-count="41">41<small>%</small></span><span class="arfx-stat-label">less chlorine used</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
-      <li class="arfx-stat arfx-rv" style="--i:2"><span class="arfx-num" data-count="36">36<small>%</small></span><span class="arfx-stat-label">fewer chloramines</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
-      <li class="arfx-stat arfx-rv" style="--i:3"><span class="arfx-num" data-count="23">23<small>%</small></span><span class="arfx-stat-label">less evaporation</span><span class="arfx-src">IAPMO R&amp;T lab test</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:4"><span class="arfx-num" data-count="64">64<small>%</small></span><span class="arfx-stat-label">lower chemical spend</span><span class="arfx-src">Field result</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:5"><span class="arfx-num" data-count="70">70<small>%</small></span><span class="arfx-stat-label">less replacement water</span><span class="arfx-src">Field result</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:6"><span class="arfx-num" data-count="50">50<small>%</small></span><span class="arfx-stat-label">less sodium bicarbonate</span><span class="arfx-src">Field result</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:7"><span class="arfx-num" data-count="43">43<small>%</small></span><span class="arfx-stat-label">less acid</span><span class="arfx-src">Field result</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:8"><span class="arfx-num" data-count="30">30<small>%</small></span><span class="arfx-stat-label">less salt</span><span class="arfx-src">Field result</span></li>
-      <li class="arfx-stat is-field arfx-rv" style="--i:9"><span class="arfx-num" data-count="20">20<small>%</small></span><span class="arfx-stat-label">less pump energy</span><span class="arfx-src">Field result</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:1"><span class="arfx-num" data-count="41">41<small>%</small></span><span class="arfx-stat-label">less chlorine used</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:2"><span class="arfx-num" data-count="36">36<small>%</small></span><span class="arfx-stat-label">fewer chloramines</span></li>
+      <li class="arfx-stat arfx-rv" style="--i:3"><span class="arfx-num" data-count="23">23<small>%</small></span><span class="arfx-stat-label">less evaporation</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:4"><span class="arfx-num" data-count="50">50<small>%</small></span><span class="arfx-stat-label">lower chemical spend</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:5"><span class="arfx-num" data-count="70">70<small>%</small></span><span class="arfx-stat-label">less replacement water</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:6"><span class="arfx-num" data-count="50">50<small>%</small></span><span class="arfx-stat-label">less sodium bicarbonate</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:7"><span class="arfx-num" data-count="43">43<small>%</small></span><span class="arfx-stat-label">less acid</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:8"><span class="arfx-num" data-count="30">30<small>%</small></span><span class="arfx-stat-label">less salt</span></li>
+      <li class="arfx-stat is-field arfx-rv" style="--i:9"><span class="arfx-num" data-count="20">20<small>%</small></span><span class="arfx-stat-label">less pump energy</span></li>
     </ul>
+    <p class="arfx-stats-note arfx-rv" style="--i:10">Compilation of IAPMO R&amp;T lab tests, third-party testing and field study results.</p>
 
     <a class="arfx-feature arfx-rv" style="--i:10" href="/case-studies">
       <span class="arfx-feature-text">See the results at real properties<span>Measured savings, guest feedback and published ESG reporting from hotels and resorts.</span></span>

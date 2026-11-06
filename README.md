@@ -98,8 +98,9 @@ Webflow Section 7 (2026-11-04). Master `AquaRev_Features.html`, build `build-fea
   value cards (/solution, /specifications, /certificationmap), then the ROI Assessment CTA and "See the
   lab data" (/data).
 - **Figures:** IAPMO R&T lab (41% chlorine, 36% chloramines, 23% evaporation) and Turtle Bay field data
-  (64% chemical spend, 70% replacement water, 50% bicarbonate, 43% acid, 30% salt, 20% pump energy).
-  Each tile carries a source tag. No on-page sources note (removed at Jeff's request).
+  (50% chemical spend, 70% replacement water, 50% bicarbonate, 43% acid, 30% salt, 20% pump energy).
+  No per-tile tags; one note under the grid reads "Compilation of IAPMO R&T lab tests, third-party testing
+  and field study results." (Jeff, 2026-11-06). Chemical spend shown as 50% at Jeff's direction.
 - **Count-up:** runs once on scroll and always lands on the real number. Reduced-motion visitors see the
   final values.
 - **Webflow:** page-level embed directly after the logo-banner embed. Section 7 is hidden, not deleted.
